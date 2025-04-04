@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Kmar | Frontend Developer</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#6d28d9',secondary:'#4f46e5'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+background-color: #0f172a;
+color: #f8fafc;
+overflow-x: hidden;
+}
+.nav-link.text-primary::after {
+content: '';
+position: absolute;
+bottom: -5px;
+left: 0;
+width: 100%;
+height: 2px;
+background-color: #6d28d9;
+}
+.glassmorphism {
+background: rgba(15, 23, 42, 0.7);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.1);
+box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+.neumorphism {
+background: #1e293b;
+box-shadow: 8px 8px 16px #0f172a, -8px -8px 16px #334155;
+}
+.skill-card {
+transition: transform 0.3s, box-shadow 0.3s;
+}
+.skill-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.project-card {
+transition: transform 0.5s, box-shadow 0.5s;
+transform-style: preserve-3d;
+}
+.project-card:hover {
+transform: rotateY(10deg) translateZ(20px);
+}
+.testimonial-card {
+transition: transform 0.3s, opacity 0.3s;
+}
+.testimonial-card:hover {
+transform: scale(1.05);
+}
+.social-icon {
+transition: transform 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.social-icon:hover {
+transform: translateY(-5px);
+color: #6d28d9;
+box-shadow: 0 10px 15px -3px rgba(109, 40, 217, 0.3);
+}
+.nav-link {
+position: relative;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+bottom: -5px;
+left: 0;
+width: 0;
+height: 2px;
+background-color: #6d28d9;
+transition: width 0.3s;
+}
+.nav-link:hover::after {
+width: 100%;
+}
+.typing-effect::after {
+content: '|';
+animation: blink 1s infinite;
+}
+@keyframes blink {
+0%, 100% { opacity: 1; }
+50% { opacity: 0; }
+}
+.progress-bar {
+height: 6px;
+background: #1e293b;
+border-radius: 3px;
+overflow: hidden;
+}
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, #6d28d9, #4f46e5);
+border-radius: 3px;
+transition: width 1s ease-in-out;
+}
+input:focus + label, textarea:focus + label {
+transform: translateY(-20px) scale(0.8);
+color: #6d28d9;
+}
+.floating-label {
+transition: transform 0.3s, color 0.3s;
+transform-origin: left;
+}
+input:not(:placeholder-shown) + label, textarea:not(:placeholder-shown) + label {
+transform: translateY(-20px) scale(0.8);
+}
+.parallax {
+transform: translateY(var(--parallax-y));
+transition: transform 0.1s;
+}
+.hero-particles {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+overflow: hidden;
+}
+.particle {
+position: absolute;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 50%;
+animation: float 15s infinite linear;
+}
+@keyframes float {
+0% { transform: translateY(0) rotate(0deg); }
+100% { transform: translateY(-100vh) rotate(360deg); }
+}
+.project-gallery {
+scroll-snap-type: x mandatory;
+scrollbar-width: thin;
+scrollbar-color: #6d28d9 #1e293b;
+}
+.project-gallery::-webkit-scrollbar {
+height: 8px;
+}
+.project-gallery::-webkit-scrollbar-track {
+background: #1e293b;
+border-radius: 4px;
+}
+.project-gallery::-webkit-scrollbar-thumb {
+background: #6d28d9;
+border-radius: 4px;
+}
+.project-card {
+scroll-snap-align: start;
+}
+.avatar-container {
+animation: float-avatar 6s ease-in-out infinite;
+}
+@keyframes float-avatar {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-20px); }
+}
+.glow {
+box-shadow: 0 0 15px rgba(109, 40, 217, 0.5);
+}
+.glow:hover {
+box-shadow: 0 0 30px rgba(109, 40, 217, 0.8);
+}
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 glassmorphism py-4">
+<div class="container mx-auto px-6 flex justify-between items-center">
+<a href="#" class="text-2xl flex items-center justify-center">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center relative overflow-hidden group">
+<div class="absolute w-4 h-4 border-t-2 border-l-2 border-white top-2 left-2 transform -rotate-45 transition-all duration-300 group-hover:rotate-0"></div>
+<div class="absolute w-4 h-4 border-b-2 border-r-2 border-white bottom-2 right-2 transform -rotate-45 transition-all duration-300 group-hover:rotate-0"></div>
+<div class="w-5 h-5 bg-white/20 rounded-sm transform rotate-45"></div>
+<div class="absolute w-full h-1 bg-white/30 bottom-0 left-0"></div>
+<div class="absolute w-1 h-full bg-white/30 right-0 top-0"></div>
+</div>
+</a>
+<div class="hidden md:flex space-x-8">
+<a href="#home" class="nav-link text-gray-300 hover:text-white" id="nav-home">Home</a>
+<a href="#skills" class="nav-link text-gray-300 hover:text-white" id="nav-skills">Skills</a>
+<a href="#projects" class="nav-link text-gray-300 hover:text-white" id="nav-projects">Projects</a>
+<a href="#testimonials" class="nav-link text-gray-300 hover:text-white" id="nav-testimonials">Testimonials</a>
+<a href="#contact" class="nav-link text-gray-300 hover:text-white" id="nav-contact">Contact</a>
+</div>
+<button class="md:hidden w-10 h-10 flex items-center justify-center text-white">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+</nav>
+<!-- Mobile Menu (Hidden by default) -->
+<div class="hidden fixed inset-0 z-50 glassmorphism flex flex-col justify-center items-center space-y-8">
+<a href="#home" class="text-xl text-white hover:text-primary">Home</a>
+<a href="#skills" class="text-xl text-white hover:text-primary">Skills</a>
+<a href="#projects" class="text-xl text-white hover:text-primary">Projects</a>
+<a href="#testimonials" class="text-xl text-white hover:text-primary">Testimonials</a>
+<a href="#contact" class="text-xl text-white hover:text-primary">Contact</a>
+<button class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center text-white">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<!-- Hero Section -->
+<section id="home" class="min-h-screen relative flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+<div class="hero-particles">
+<div class="particle" style="width: 10px; height: 10px; left: 10%; animation-duration: 20s;"></div>
+<div class="particle" style="width: 15px; height: 15px; left: 20%; animation-duration: 25s;"></div>
+<div class="particle" style="width: 8px; height: 8px; left: 30%; animation-duration: 18s;"></div>
+<div class="particle" style="width: 12px; height: 12px; left: 40%; animation-duration: 22s;"></div>
+<div class="particle" style="width: 6px; height: 6px; left: 50%; animation-duration: 15s;"></div>
+<div class="particle" style="width: 14px; height: 14px; left: 60%; animation-duration: 24s;"></div>
+<div class="particle" style="width: 9px; height: 9px; left: 70%; animation-duration: 19s;"></div>
+<div class="particle" style="width: 11px; height: 11px; left: 80%; animation-duration: 21s;"></div>
+<div class="particle" style="width: 7px; height: 7px; left: 90%; animation-duration: 17s;"></div>
+</div>
+<div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+<div class="md:w-1/2 mb-12 md:mb-0 z-10">
+<h1 class="text-4xl md:text-6xl font-bold mb-4">
+Hi, I'm <span class="text-primary">Mohamed Kmar</span>
+</h1>
+<h2 class="text-2xl md:text-3xl font-medium mb-6 typing-effect">Frontend Developer</h2>
+<p class="text-gray-300 mb-8 max-w-lg">
+Passionate about creating immersive web experiences with modern technologies.
+Specializing in interactive 3D interfaces and responsive design to bring your digital vision to life.
+</p>
+<div class="flex space-x-4 mb-8">
+<a href="https://github.com/MO7MEDKMAR" target="_blank" class="social-icon w-12 h-12 flex items-center justify-center bg-gray-800 rounded-full">
+<i class="ri-github-fill ri-lg"></i>
+</a>
+<a href="#" target="_blank" class="social-icon w-12 h-12 flex items-center justify-center bg-gray-800 rounded-full">
+<i class="ri-linkedin-fill ri-lg"></i>
+</a>
+<a href="mailto:Mohamed.kamr.2006@gmail.com" class="social-icon w-12 h-12 flex items-center justify-center bg-gray-800 rounded-full">
+<i class="ri-mail-fill ri-lg"></i>
+</a>
+<a href="https://wa.me/201229816772" target="_blank" class="social-icon w-12 h-12 flex items-center justify-center bg-gray-800 rounded-full">
+<i class="ri-whatsapp-fill ri-lg"></i>
+</a>
+</div>
+<div class="flex space-x-4">
+<a href="#projects" class="px-6 py-3 bg-primary hover:bg-purple-700 text-white font-medium !rounded-button transition-all duration-300 whitespace-nowrap">
+View Projects
+</a>
+<a href="#contact" class="px-6 py-3 border border-primary text-primary hover:bg-primary/10 font-medium !rounded-button transition-all duration-300 whitespace-nowrap">
+Contact Me
+</a>
+</div>
+</div>
+<div class="md:w-1/2 flex justify-center avatar-container z-10">
+<div class="w-64 h-64 md:w-80 md:h-80 rounded-full glassmorphism glow flex items-center justify-center">
+<div class="w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-primary">
+<img src="https://static.readdy.ai/image/0d064dfb6d6ba4fe92649afd0fe0b910/8f1f6f3cb7200aa74f07b8c4228b0436.jpeg" alt="Mohamed Kmar" class="w-full h-full object-cover">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills Section -->
+<section id="skills" class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">My <span class="text-primary">Skills</span></h2>
+<p class="text-gray-300 max-w-2xl mx-auto">
+A comprehensive toolkit that enables me to create modern, responsive, and interactive web applications.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Frontend Skills -->
+<div class="glassmorphism rounded-lg p-8 skill-card">
+<div class="flex items-center mb-6">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/20 rounded-lg mr-4">
+<i class="ri-code-s-slash-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold">Frontend Development</h3>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-2">
+<span>HTML5</span>
+<span>95%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" style="width: 95%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span>CSS3 / SASS</span>
+<span>90%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" style="width: 90%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span>JavaScript</span>
+<span>85%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span>TypeScript</span>
+<span>80%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" style="width: 80%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Frameworks & Libraries -->
+<div class="glassmorphism rounded-lg p-8 skill-card">
+<div class="flex items-center mb-6">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/20 rounded-lg mr-4">
+<i class="ri-reactjs-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold">Frameworks & Libraries</h3>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-2">
+<span>React.js</span>
+<span>90%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" style="width: 90%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span>Next.js</span>
+<span>85%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span>Tailwind CSS</span>
+<span>95%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" style="width: 95%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span>Three.js / R3F</span>
+<span>80%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" style="width: 80%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tools & Others -->
+<div class="glassmorphism rounded-lg p-8 skill-card lg:col-span-1 md:col-span-2 lg:col-auto">
+<div class="flex items-center mb-6">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/20 rounded-lg mr-4">
+<i class="ri-tools-fill ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold">Tools & Backend</h3>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-2">
+<span>Git / GitHub</span>
+<span>90%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" style="width: 90%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span>Node.js</span>
+<span>75%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" style="width: 75%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span>Figma / UI Design</span>
+<span>85%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span>Firebase</span>
+<span>80%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" style="width: 80%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section id="projects" class="py-20 relative" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">My <span class="text-primary">Projects</span></h2>
+<p class="text-gray-300 max-w-2xl mx-auto">
+Explore my portfolio of interactive web applications and 3D experiences.
+</p>
+</div>
+<div class="flex space-x-4 mb-8 justify-center">
+<button class="px-4 py-2 bg-primary text-white !rounded-button whitespace-nowrap">All Projects</button>
+</div>
+<div class="project-gallery flex space-x-6 overflow-x-auto pb-8">
+<!-- Project 1 -->
+<div class="project-card glassmorphism rounded-lg p-6 flex-shrink-0 w-full md:w-96">
+<div class="relative h-48 rounded overflow-hidden mb-6">
+<img src="https://public.readdy.ai/ai/img_res/7c10f083e9cf2a8f2d08755b20871594.jpg" alt="3D E-commerce Platform" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+<div>
+<span class="text-xs font-medium px-2 py-1 bg-primary rounded-full">3D Experience</span>
+</div>
+</div>
+</div>
+<h3 class="text-xl font-bold mb-2">3D E-commerce Platform</h3>
+<p class="text-gray-300 mb-4 text-sm">
+An immersive shopping experience with 3D product visualization and AR try-on features.
+</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">React</span>
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">Three.js</span>
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">WebGL</span>
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">Tailwind</span>
+</div>
+<div class="flex space-x-3">
+<a href="#" class="text-primary hover:text-purple-400 flex items-center">
+<i class="ri-eye-line ri-fw mr-1"></i> Live Demo
+</a>
+<a href="#" class="text-primary hover:text-purple-400 flex items-center">
+<i class="ri-github-line ri-fw mr-1"></i> Code
+</a>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="project-card glassmorphism rounded-lg p-6 flex-shrink-0 w-full md:w-96">
+<div class="relative h-48 rounded overflow-hidden mb-6">
+<img src="https://public.readdy.ai/ai/img_res/4de70b6fb437ec68b351ebf0ae6fd991.jpg" alt="Analytics Dashboard" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+<div>
+<span class="text-xs font-medium px-2 py-1 bg-primary rounded-full">Web App</span>
+</div>
+</div>
+</div>
+<h3 class="text-xl font-bold mb-2">Analytics Dashboard</h3>
+<p class="text-gray-300 mb-4 text-sm">
+Real-time data visualization dashboard with interactive charts and customizable widgets.
+</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">Next.js</span>
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">D3.js</span>
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">Firebase</span>
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">Tailwind</span>
+</div>
+<div class="flex space-x-3">
+<a href="#" class="text-primary hover:text-purple-400 flex items-center">
+<i class="ri-eye-line ri-fw mr-1"></i> Live Demo
+</a>
+<a href="#" class="text-primary hover:text-purple-400 flex items-center">
+<i class="ri-github-line ri-fw mr-1"></i> Code
+</a>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="project-card glassmorphism rounded-lg p-6 flex-shrink-0 w-full md:w-96">
+<div class="relative h-48 rounded overflow-hidden mb-6">
+<img src="https://public.readdy.ai/ai/img_res/62daabab2ff2c370811c5c7e1ab8478c.jpg" alt="3D Portfolio Template" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+<div>
+<span class="text-xs font-medium px-2 py-1 bg-primary rounded-full">3D Experience</span>
+</div>
+</div>
+</div>
+<h3 class="text-xl font-bold mb-2">3D Portfolio Template</h3>
+<p class="text-gray-300 mb-4 text-sm">
+Customizable portfolio template with 3D elements and smooth animations for creative professionals.
+</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">React</span>
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">Three.js</span>
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">GSAP</span>
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">Tailwind</span>
+</div>
+<div class="flex space-x-3">
+<a href="#" class="text-primary hover:text-purple-400 flex items-center">
+<i class="ri-eye-line ri-fw mr-1"></i> Live Demo
+</a>
+<a href="#" class="text-primary hover:text-purple-400 flex items-center">
+<i class="ri-github-line ri-fw mr-1"></i> Code
+</a>
+</div>
+</div>
+<!-- Project 4 -->
+<div class="project-card glassmorphism rounded-lg p-6 flex-shrink-0 w-full md:w-96">
+<div class="relative h-48 rounded overflow-hidden mb-6">
+<img src="https://public.readdy.ai/ai/img_res/e2da573bb8b6f760e53cc1a5a6d14455.jpg" alt="Fitness Tracker App" class="w-full h-full object-cover">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+<div>
+<span class="text-xs font-medium px-2 py-1 bg-primary rounded-full">UI Design</span>
+</div>
+</div>
+</div>
+<h3 class="text-xl font-bold mb-2">Fitness Tracker App</h3>
+<p class="text-gray-300 mb-4 text-sm">
+Mobile fitness application with workout tracking, progress visualization, and social features.
+</p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">React Native</span>
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">Redux</span>
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">Firebase</span>
+<span class="text-xs px-2 py-1 bg-gray-800 rounded-full">Figma</span>
+</div>
+<div class="flex space-x-3">
+<a href="#" class="text-primary hover:text-purple-400 flex items-center">
+<i class="ri-eye-line ri-fw mr-1"></i> Live Demo
+</a>
+<a href="#" class="text-primary hover:text-purple-400 flex items-center">
+<i class="ri-github-line ri-fw mr-1"></i> Code
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-20 relative" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Client <span class="text-primary">Testimonials</span></h2>
+<p class="text-gray-300 max-w-2xl mx-auto">
+What clients and collaborators say about working with me.
+</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<!-- Testimonial 1 -->
+<div class="testimonial-card glassmorphism rounded-lg p-8 max-w-md">
+<div class="flex items-center mb-6">
+<div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+<img src="https://public.readdy.ai/ai/img_res/42fd94f6bd5236da2639d0562964cf7c.jpg" alt="David Mitchell" class="w-full h-full object-cover">
+</div>
+<div>
+<h4 class="text-lg font-semibold">David Mitchell</h4>
+<p class="text-gray-400 text-sm">CEO, TechVision Inc.</p>
+</div>
+</div>
+<div class="mb-4 flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+</div>
+<p class="text-gray-300 italic">
+"Mohamed created an exceptional 3D e-commerce experience for our brand. His attention to detail and technical expertise helped us increase conversion rates by 40%. Would definitely work with him again!"
+</p>
+</div>
+<!-- Testimonial 2 -->
+<div class="testimonial-card glassmorphism rounded-lg p-8 max-w-md">
+<div class="flex items-center mb-6">
+<div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+<img src="https://public.readdy.ai/ai/img_res/c3ae6c633c1d399438a031fcc9603717.jpg" alt="Sarah Johnson" class="w-full h-full object-cover">
+</div>
+<div>
+<h4 class="text-lg font-semibold">Sarah Johnson</h4>
+<p class="text-gray-400 text-sm">Marketing Director, Innovate Labs</p>
+</div>
+</div>
+<div class="mb-4 flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+</div>
+<p class="text-gray-300 italic">
+"Working with Mohamed was a pleasure. He developed an analytics dashboard that transformed how we visualize our data. His ability to translate complex requirements into intuitive interfaces is remarkable."
+</p>
+</div>
+<!-- Testimonial 3 -->
+<div class="testimonial-card glassmorphism rounded-lg p-8 max-w-md">
+<div class="flex items-center mb-6">
+<div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+<img src="https://public.readdy.ai/ai/img_res/84192a6cb6038dd202b49251f13d82fa.jpg" alt="Alex Turner" class="w-full h-full object-cover">
+</div>
+<div>
+<h4 class="text-lg font-semibold">Alex Turner</h4>
+<p class="text-gray-400 text-sm">Creative Director, DesignHub</p>
+</div>
+</div>
+<div class="mb-4 flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+</div>
+<p class="text-gray-300 italic">
+"Mohamed's portfolio template exceeded our expectations. The 3D elements and animations brought our agency's work to life in a way that traditional websites simply can't. His technical skills and creativity are top-notch."
+</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 relative" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Get In <span class="text-primary">Touch</span></h2>
+<p class="text-gray-300 max-w-2xl mx-auto">
+Have a project in mind or want to collaborate? I'd love to hear from you!
+</p>
+</div>
+<div class="flex flex-col md:flex-row gap-12">
+<div class="md:w-1/2">
+<form class="glassmorphism rounded-lg p-8">
+<div class="mb-8 relative">
+<input type="text" id="name" placeholder=" " class="w-full bg-gray-800/50 text-white px-4 py-3 rounded border-none focus:outline-none focus:ring-2 focus:ring-primary">
+<label for="name" class="absolute left-4 top-3 text-gray-400 floating-label">Your Name</label>
+</div>
+<div class="mb-8 relative">
+<input type="email" id="email" placeholder=" " class="w-full bg-gray-800/50 text-white px-4 py-3 rounded border-none focus:outline-none focus:ring-2 focus:ring-primary">
+<label for="email" class="absolute left-4 top-3 text-gray-400 floating-label">Your Email</label>
+</div>
+<div class="mb-8 relative">
+<textarea id="message" rows="5" placeholder=" " class="w-full bg-gray-800/50 text-white px-4 py-3 rounded border-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+<label for="message" class="absolute left-4 top-3 text-gray-400 floating-label">Your Message</label>
+</div>
+<button type="submit" id="submitButton" class="w-full py-3 bg-primary hover:bg-purple-700 text-white font-medium !rounded-button transition-all duration-300 whitespace-nowrap flex items-center justify-center">
+<span>Send Message</span>
+<div id="loadingSpinner" class="hidden ml-2 w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+</button>
+</form>
+</div>
+<div class="md:w-1/2">
+<div class="glassmorphism rounded-lg p-8 h-full">
+<h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/20 rounded-lg mr-4">
+<i class="ri-mail-line ri-lg text-primary"></i>
+</div>
+<div>
+<h4 class="text-lg font-medium mb-1">Email</h4>
+<a href="mailto:Mohamed.kamr.2006@gmail.com" class="text-gray-300 hover:text-primary">Mohamed.kamr.2006@gmail.com</a>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/20 rounded-lg mr-4">
+<i class="ri-whatsapp-line ri-lg text-primary"></i>
+</div>
+<div>
+<h4 class="text-lg font-medium mb-1">WhatsApp</h4>
+<a href="https://wa.me/201229816772" class="text-gray-300 hover:text-primary">+20 122 981 6772</a>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/20 rounded-lg mr-4">
+<i class="ri-map-pin-line ri-lg text-primary"></i>
+</div>
+<div>
+<h4 class="text-lg font-medium mb-1">Location</h4>
+<p class="text-gray-300">Tanta, Gharbia, Egypt</p>
+</div>
+</div>
+<div class="pt-6">
+<h4 class="text-lg font-medium mb-4">Follow Me</h4>
+<div class="flex space-x-4">
+<a href="https://github.com/MO7MEDKMAR" target="_blank" class="social-icon w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full">
+<i class="ri-github-fill ri-lg"></i>
+</a>
+<a href="#" target="_blank" class="social-icon w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full">
+<i class="ri-linkedin-fill ri-lg"></i>
+</a>
+<a href="#" target="_blank" class="social-icon w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full">
+<i class="ri-twitter-x-fill ri-lg"></i>
+</a>
+<a href="#" target="_blank" class="social-icon w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full">
+<i class="ri-instagram-fill ri-lg"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="py-8 glassmorphism">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<div class="mb-4 md:mb-0">
+<a href="#" class="text-2xl flex items-center justify-center">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center relative overflow-hidden group">
+<div class="absolute w-4 h-4 border-t-2 border-l-2 border-white top-2 left-2 transform -rotate-45 transition-all duration-300 group-hover:rotate-0"></div>
+<div class="absolute w-4 h-4 border-b-2 border-r-2 border-white bottom-2 right-2 transform -rotate-45 transition-all duration-300 group-hover:rotate-0"></div>
+<div class="w-5 h-5 bg-white/20 rounded-sm transform rotate-45"></div>
+<div class="absolute w-full h-1 bg-white/30 bottom-0 left-0"></div>
+<div class="absolute w-1 h-full bg-white/30 right-0 top-0"></div>
+</div>
+</a>
+</div>
+<div class="text-center md:text-right">
+<p class="text-gray-400">© 2025 Mohamed Kmar. All rights reserved.</p>
+</div>
+</div>
+</div>
+</footer>
+<script>
+// Mobile menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+const menuButton = document.querySelector('nav button');
+const mobileMenu = document.querySelector('.fixed.inset-0.glassmorphism');
+const closeButton = mobileMenu.querySelector('button');
+menuButton.addEventListener('click', function() {
+mobileMenu.classList.remove('hidden');
+});
+closeButton.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+});
+});
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+// Close mobile menu if open
+const mobileMenu = document.querySelector('.fixed.inset-0.glassmorphism');
+if (!mobileMenu.classList.contains('hidden')) {
+mobileMenu.classList.add('hidden');
+}
+}
+});
+});
+// Parallax effect
+document.addEventListener('DOMContentLoaded', function() {
+const parallaxElements = document.querySelectorAll('.parallax');
+window.addEventListener('scroll', function() {
+parallaxElements.forEach(el => {
+const scrollY = window.scrollY;
+const speed = el.dataset.speed || 0.1;
+el.style.setProperty('--parallax-y', `${scrollY * speed}px`);
+});
+});
+});
+// Form validation and submission
+document.addEventListener('DOMContentLoaded', function() {
+const contactForm = document.querySelector('#contact form');
+if (contactForm) {
+contactForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const nameInput = document.querySelector('#name');
+const emailInput = document.querySelector('#email');
+const messageInput = document.querySelector('#message');
+// Simple validation
+let isValid = true;
+if (!nameInput.value.trim()) {
+nameInput.classList.add('ring-red-500');
+isValid = false;
+} else {
+nameInput.classList.remove('ring-red-500');
+}
+if (!emailInput.value.trim() || !emailInput.value.includes('@')) {
+emailInput.classList.add('ring-red-500');
+isValid = false;
+} else {
+emailInput.classList.remove('ring-red-500');
+}
+if (!messageInput.value.trim()) {
+messageInput.classList.add('ring-red-500');
+isValid = false;
+} else {
+messageInput.classList.remove('ring-red-500');
+}
+if (isValid) {
+// Construct WhatsApp URL with form data
+const whatsappNumber = '201229816772';
+const message = `Name: ${nameInput.value}\nEmail: ${emailInput.value}\nMessage: ${messageInput.value}`;
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+// Open WhatsApp in new tab
+window.open(whatsappUrl, '_blank');
+// Reset form
+contactForm.reset();
+}
+});
+}
+});
+// Typing effect for hero section
+document.addEventListener('DOMContentLoaded', function() {
+const typingElement = document.querySelector('.typing-effect');
+const phrases = ['Frontend Developer', '3D Web Designer', 'UI/UX Enthusiast', 'React Specialist'];
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typingSpeed = 100;
+function typeText() {
+const currentPhrase = phrases[phraseIndex];
+if (isDeleting) {
+// Removing characters
+typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+charIndex--;
+typingSpeed = 50;
+} else {
+// Adding characters
+typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+charIndex++;
+typingSpeed = 100;
+}
+// If completed typing the phrase
+if (!isDeleting && charIndex === currentPhrase.length) {
+isDeleting = true;
+typingSpeed = 1000; // Pause at the end
+}
+// If completed deleting the phrase
+if (isDeleting && charIndex === 0) {
+isDeleting = false;
+phraseIndex = (phraseIndex + 1) % phrases.length;
+}
+setTimeout(typeText, typingSpeed);
+}
+// Start the typing effect
+setTimeout(typeText, 1000);
+});
+// Animate progress bars on scroll
+document.addEventListener('DOMContentLoaded', function() {
+const progressBars = document.querySelectorAll('.progress-fill');
+function animateProgressBars() {
+progressBars.forEach(bar => {
+const targetWidth = bar.style.width;
+bar.style.width = '0%';
+setTimeout(() => {
+bar.style.width = targetWidth;
+}, 300);
+});
+}
+// Create an Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+animateProgressBars();
+observer.unobserve(entry.target);
+}
+});
+}, { threshold: 0.1 });
+// Observe the skills section
+const skillsSection = document.querySelector('#skills');
+if (skillsSection) {
+observer.observe(skillsSection);
+}
+});
+</script>
+</body>
+</html>
